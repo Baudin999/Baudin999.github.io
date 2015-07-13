@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Why is void an antipattern"
+title:  "Why void is an antipattern"
 date:   2015-07-12 08:42:46
 categories: programming
 ---
-## Why is void an antipattern
+## Why void is an antipattern
 
 WARNING: You might learn some math!!
 
