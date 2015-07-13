@@ -259,3 +259,7 @@ that return an object, but this object cannot have the same type as the original
 doesn't help with readability or maintainability. 
 
 For now F# seems to wins a the point on immutability whilst remaining easy to read.
+
+## Write more for less
+
+The second feeling I have when I look at JavaScript is that every keystroke somehow "means more".
