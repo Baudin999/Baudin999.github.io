@@ -70,3 +70,61 @@ instance specific 'data'.
 
 The implementation is somewhat the same as the [Q](https://github.com/kriskowal/q) library. The difference is that 
 I did not implement any error handling or chaining of promises. This is to keep the example code as light as possible.
+
+Now let's rewrite this using ES2015's class keyword and other goodies:
+
+{% highlight javascript linenos=table %}
+
+class Promise {
+  
+  constructor() {
+    this.promise = {
+      then: (_resolver) => {
+        this._resolver = _resolver;
+      }
+    }
+  }
+  
+  resolve(...args) {
+    if (this._resolver) {
+      this._resolver.apply(undefined, args); 
+    }
+  }
+  
+  static defer() { 
+    return new Promise(); 
+  }
+}
+
+{% endhighlight %}
+
+And the usage would look something like:
+
+{% highlight javascript linenos=table %}
+
+// how to use the new Promise class...
+function doSomething() {
+  var deferred = Promise.defer();
+  setTimeout(function() {
+    deferred.resolve('I\'ve been resolved!!');
+  }, 2000);
+  return deferred.promise;
+}
+
+doSomething().then(function(message) {
+  console.log(message);
+});
+
+{% endhighlight %}
+
+Now let's look at the Promise library in ES2015:
+
+{% highlight javascript lineos=table %}
+function doSomething() {
+  return new Promise((_resolve, _reject) => {
+    setTimeout(() => _resolve('I\'ve been resolved!!'), 0);
+  });
+}
+
+doSomething().then((_m) => console.log(_m));
+{% endhighlight %}
