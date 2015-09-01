@@ -128,3 +128,8 @@ function doSomething() {
 
 doSomething().then((_m) => console.log(_m));
 {% endhighlight %}
+
+It feels a bit wrong to pass in the `resolve` and `reject` handlers to the `Promise` constructor. But considering
+how JavaScript's closures work it is actually a very nice way to work around having to create objects inside of
+your implementation. While looking at the spec and working with the new promises I've come to appreciate the 
+choices made by the ECMA committee.  
