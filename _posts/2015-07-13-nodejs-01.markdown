@@ -1,0 +1,99 @@
+---
+layout: post
+title:  "NodeJS"
+date:   2015-07-12 08:42:46
+categories: programming
+---
+## NodeJS
+
+Today I wanted to talk about NodeJS. NodeJS is a runtime implemented on Google's V8 engine and can serve as a great
+web server. The idea of NodeJS is that you *write* your logic and start the server from your script. This is 
+different from, for example, ASP.NET where your server is managed by IIS and you just *hook into* that process.
+
+Oh yeah, before I forget, you write NodeJS applications using JavaScript and if you read this blog you know I'm a big
+fan of JavaScript when it is done right. The asynchronous nature of JavaScript is perfect for an application build on
+top of V8. Now let's dive into the code!
+
+{% highlight javascript linenos=table %}
+var http = require('http');
+
+function handleRequest(req, res) {
+    res.end('Hello World\n');
+}
+
+http.createServer(handleRequest).listen(5000, function() {
+    console.log('listening on port 5000');
+});
+{% endhighlight %}
+
+This little piece of code is enough to create a simple web server which will retrun the string "Hello World\n" for
+every request done to this server. Now, you may not think that this is a big deal, but this is huge! A single file
+with just a dependency loaded through a require statement serves actual content.
+
+How can we test our little server? Well, we could curl it:
+
+```
+curl -X GET http://localhost:5000/
+```
+
+I alwasy like to use little tools and other pieces of code together and work through an otherwise unsolvable 
+problem, but, today I'm going to be lazy and I will jsut open up a browser to get things rolling. When you go
+to that address you will see "Hello world" written in yoour browser. Now, how can we serve an actual page?
+
+Http requests are build in such a way that headers give extra information about the request and the browser 
+uses this information to render the content which you've requested. For example if we want to serve HTML we
+van specify this like so, in our server write the following code:
+
+{% highlight javascript linenos=table %}
+var http = require('http');
+
+function handleRequest(req, res) {
+    res.end('<h1>This is a header</h1>');
+}
+
+http.createServer(handleRequest).listen(5000, function() {
+    console.log('listening on port 5000');
+});
+{% endhighlight %}
+
+When you open this page in your browser and look at it's source you can see that it surrounds the h1 tag we've
+created with propper HTML formatting. But we can't always rely on the tools to do this formatting for us. We
+will have to do this ourselves, so how do we serve a fully fledged HTML file?
+
+In steps the `fs` module in NodeJS. With this module we can read a file and send it out to the browser. Just 
+create a basic `index.html` file and put the following in there:
+
+{% highlight html linenos=table %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple page</title>
+</head>
+<body>
+    <h1>Hello World!</h1>
+</body>
+</html>
+{% endhighlight %}
+
+To serve this page using just plain old Node you can use the following snippet:
+
+{% highlight javascript linenos=table %}
+var http = require('http'),
+    fs = require('fs');
+
+function hanldeRequest(req, res) {
+    fs.readFile('./index.html', 'utf8', function(err, html) {
+        req.writeHead(200, {"Content-Type":"text/html"});
+        req.write(html);
+        req.end();
+    });
+}
+
+http.createServer(handleRequest).listen(5000, function() {
+    console.log('listening on port 5000');
+});
+{% endhighlight %}
+
+This code show you how to serve a simple static HTML file from our NodeJS server to a client. This does not mean that 
+this is the only way of serving static content. As you can see we have 

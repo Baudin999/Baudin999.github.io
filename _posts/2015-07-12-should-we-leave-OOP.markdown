@@ -51,7 +51,6 @@ I will try and get these comments into perspective, imagine an application where
 order with orderlines. In C# we would have to scaffold this structure along the lines of:
 
 {% highlight C# linenos=table %}
-
 public class Order {
   public string Number { get; set; }
   public ICollection<OrderLine> OrderLines { get; set; }
@@ -62,20 +61,17 @@ public class Order {
 public class OrderLine {
   public string Number { get; set; }
 }
-
 {% endhighlight %}
 
 This would be a typical 'bare' implementation of a structure. And when we want to instantiate these objects we 
 will get something like:
 
 {% highlight C# linenos=table %}
-
 var order = new Order();
 order.Number = "1234567890";
 order.OrderLines.Add(new OrderLine() {
   Number = "0987654321"
 });
-
 {% endhighlight linenos=table %}
 
 If we were to adopt a more "javasscripty" style of programming we would have to accept that there "is no 
@@ -117,7 +113,6 @@ still possible to add and orderLine to the orderLines property of the order obje
 In C# we would have to rewrite our entire class to achieve this immutability:
 
 {% highlight C# linenos=table %}
-
 public class OrderLine {
     private readonly string _Number;
     public string Number {
@@ -153,7 +148,6 @@ public class Order {
         _OrderLines = orderLines;
     }
 }
-
 {% endhighlight %}
 
 This C# code while verbose is better than the JavaScript version because the Collection of orderlines returned
