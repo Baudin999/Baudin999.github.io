@@ -16,16 +16,16 @@ changed my life.
 ## What does my day look like?
 
 My day starts the same as any other person, I open my eyes, get out of bed; but unlike every other person I get up in 
-the morning and start hurrying! I get the kids ready, grab a piece of bread and run upstairs to get to my computer. I 
-boot my computer up and get to work.
+the morning and start hurrying! I get the kids ready, grab a piece of bread and run upstairs to get to my computer. With 
+unbridled anticipation I boot up my computer and get to work.
 
 Just to clarify, my computer is not my friend. I do not see the computer as a living entity, my computer is an 
 extension of my mind. I exert my will through my computer into a world which is not a part of daily reality and at 
-the same time it is where we spend most of our time.
+the same time, is where we spend most of our time.
 
-After my computer had booted up, which is three seconds because I use a Mac, I immediately open a few programmes. I 
+After my computer has booted, which is three seconds because I use a Mac, I immediately open a few programmes. I 
 open my IDE (integrated development environment), my terminal and my browser. These are the only things *I* need to get 
-going. Before I take a sip of my coffee my three essential applications are running and I'm ready to start my 
+going. Before I take the first sip of my coffee, my three essential applications are running and I'm ready to start my 
 working day. Now I have to admit, I know people who also open their e-mail and social media, but I do not bend that 
 way. I try to limit my contact with other people on the internet to a simple exchange of knowledge and games. 
 
@@ -65,29 +65,28 @@ technologies are replaceable by other, maybe better, technologies. With MEAN sta
 even ASP.NET although I doubt it would pass the test seeing how it has grown and has become convoluted. You can use 
 Amber or ReactJS or Angular 2.0 or even Knockout for parts of your frontend. Express can be replaces by Hapi and MongoDB
 can be swapped out for CouchDB, RavenDB or you can go into the future with Neo4j. The point is that within the philosophy 
-of the MEAN stack these changes are allowed. It is an acronym which for me has nothing to do with what the acronym 
-stands for.
+of the MEAN stack these changes are allowed. It is an acronym which for me has nothing to do with what the acronym means, 
+but with what the acronym stands for.
 
 The promise the MEAN stack brings is something which you see applied in every part of the industry's culture. We 
-get more open, less afraid to fail. Performance is something to which you aspire and we actually have heroes now.
-Fail fast is an actual term and Open Source is no longer something for hippies but an actual methodology which seems
-to mimic natural selection and evolution is such a beautiful way that most people are convinced it will be the way 
-forward. 
+get more open, less afraid to fail. Performance is something to which you aspire and we actually have heroes now, people 
+we try to live up to. *Fail fast* is an actual term and *Open Source* is no longer something for hippies but an actual 
+methodology which seems to mimic natural selection and evolution in such a beautiful way that most people are convinced 
+it will be the way forward. 
 
 ## Really? You've got to be kidding!
 
 No I'm not. I've been a .NET developer for ten years. Before that I was a VB6 developer. Only now, with the MEAN stack 
 philosophy, have I found the way which makes me happy. I can get everything done in less time, higher quality and 
-better deployment possibilities. 
-
-Without having gone into the technical details of the MEAN stack I hope I've given you an insight into the mind of the 
-programmer and I hope I've been able to show you how the MEAN stack changed my professional life. 
+better deployment and development possibilities.
 
 The MEAN stack is a promise of change to come and gives inspiration to everyone involved; change *can* 
 happen. Gone are the days of imperialistic companies and monolithic applications and welcome are the Spotify cultures,
-the Yahoo structures and of course Google. Even Microsoft is embracing this philosophy and this is saying a lot!
+the Yahoo structures and of course Google. Even Microsoft is embracing this philosophy and this is saying a lot! 
 
-Thank you for reading this article and I can wholeheartedly advice you to try it out for yourself, you'll be amazed at
+Without having gone into the technical details of the MEAN stack I hope I've given you an insight into the mind of the 
+programmer and I hope I've been able to show you how the MEAN stack changed my professional life. 
+Thank you for reading this article and I can wholeheartedly advice you to try "the MEAN stack" out for yourselves, you'll be amazed at 
 what changes will arise!
 
 Carlos Kelkboom
