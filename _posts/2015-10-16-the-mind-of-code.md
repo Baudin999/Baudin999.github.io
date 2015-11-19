@@ -83,7 +83,7 @@ better deployment possibilities.
 Without having gone into the technical details of the MEAN stack I hope I've given you an insight into the mind of the 
 programmer and I hope I've been able to show you how the MEAN stack changed my professional life. 
 
-The MEAN stack is promise of change to come and gives inspiration to everyone involved; change *can* 
+The MEAN stack is a promise of change to come and gives inspiration to everyone involved; change *can* 
 happen. Gone are the days of imperialistic companies and monolithic applications and welcome are the Spotify cultures,
 the Yahoo structures and of course Google. Even Microsoft is embracing this philosophy and this is saying a lot!
 
