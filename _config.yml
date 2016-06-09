@@ -10,4 +10,5 @@ twitter_username: Baudin999
 github_username:  Baudin999
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
+

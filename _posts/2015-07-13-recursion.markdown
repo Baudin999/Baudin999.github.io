@@ -2,7 +2,7 @@
 layout: post
 title:  "Recursion"
 date:   2015-07-12 08:42:46
-categories: programming
+categories: programming fp
 ---
 ## Getting rid of variables?
 
@@ -23,24 +23,24 @@ A *Test* consists of multiple *Questions*. A student can score *Points* on a *Qu
 the points a *Student* has scored on a test: 
 
 
-{% highlight javascript linenos=table %}
+```javascript
 int total = 0; 
 for (int i = 0; i < test.Questions.length; ++i) { 
     total += test.Questions[i].Points; 
 } 
-{% endhighlight %}
+```
 
 This is an extremely common scenario. Loop through a set and do something with a value on an object. A more functional 
 approach would be to use something called recursion; here we call the same function from within the function:
 
-{% highlight fsharp linenos=table %}
+```fsharp
 let rec sumPoints questions = 
     match questions with 
     | h::t -> h.Points + sumPoints t 
     | [] -> 0 
 
 let total = sumPoints test.Questions 
-{% endhighlight %}
+```
 
 There are a few things that will need some clarification at this point. These blog posts are about F#. And as such I 
 will write examples in both F# and C#, the two languages I am most familiar with. In this case the example in C# is 
@@ -67,21 +67,21 @@ result in an increase of code quality which will eventually result in more incom
 The second part about recursion is that compilers optimise for it. Well, they do and they don't at the same time. Imagine 
 having one question, the result would look something like:
 
-{% highlight fsharp linenos=table %}
+```fsharp
 total = ( 3 + ( 0 ) ) 
-{% endhighlight %}
+```
 
 Now imagine having four questions:
 
-{% highlight fsharp linenos=table %}
+```fsharp
 total = ( 3 + ( 4 + ( 2 + ( 1 + ( 0 ) ) ) ) )
-{% endhighlight %}
+```
 
 All of the brackets are results of function calls. With the last function call being evaluated first. If I have a few 
 million questions this will result in an infamous StackOverflow exception. How can I fix this? I could fix this be doing 
 something called Tail Recursion. Look at the following code for an example:
 
-{% highlight fsharp linenos=table %}
+```fsharp
 let sumPoints questions = 
     let rec sp questions accumulator = 
         match questions with 
@@ -90,7 +90,7 @@ let sumPoints questions =
     sp questions 0 
 
 let total = sumPoints test.Questions 
-{% endhighlight %}
+```
 
 Here we've complicated things even more by creating an inner function called sp which takes as parameters the questions 
 and an accumulator. We call this function immediately thus returning the actual sum of the points of all of the questions. 
@@ -116,7 +116,7 @@ Writing in a recursive style might be fun for F# developers. C# developers alway
 but how does recursion look in JavaScript? And what can we do in JavaScript that we cannot, or at least, can't easilly
 do in C#?
 
-{% highlight javascript linenos=table %}
+```javascript
 function sumPoints(questions) {
     // internal function to get some 'closure'
     function internal(_questions, _accumulator) {
@@ -130,7 +130,7 @@ function sumPoints(questions) {
     return internal(tempQuestions, 0);
 }
 var total = sumPoints(test.Questions); 
-{% endhighlight %}
+```
 
 This code looks clean and easy to understand. We simply either return the accumulator or we reiterate our collection.
 The fun part is how we treat our collection. The map function creates a shallow copy or clone of our array, making sure
@@ -139,7 +139,7 @@ this type of *hackery*.
 
 We can remove a few variables from this code by writing it like:
 
-{% highlight javascript linenos=table %}
+```javascript
 function sumPoints(questions) {
     // internal function to get some 'closure'
     function internal(_questions, _accumulator) {
@@ -151,5 +151,5 @@ function sumPoints(questions) {
     
     return internal(questions.map(function(q) { return q; }), 0);
 }
-{% endhighlight %}
+```
 

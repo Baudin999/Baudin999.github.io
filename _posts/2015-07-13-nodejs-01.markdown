@@ -14,7 +14,7 @@ Oh yeah, before I forget, you write NodeJS applications using JavaScript and if 
 fan of JavaScript when it is done right. The asynchronous nature of JavaScript is perfect for an application build on
 top of V8. Now let's dive into the code!
 
-{% highlight javascript linenos=table %}
+```javascript
 var http = require('http');
 
 function handleRequest(req, res) {
@@ -24,7 +24,7 @@ function handleRequest(req, res) {
 http.createServer(handleRequest).listen(5000, function() {
     console.log('listening on port 5000');
 });
-{% endhighlight %}
+```
 
 This little piece of code is enough to create a simple web server which will retrun the string "Hello World\n" for
 every request done to this server. Now, you may not think that this is a big deal, but this is huge! A single file
@@ -44,7 +44,7 @@ Http requests are build in such a way that headers give extra information about 
 uses this information to render the content which you've requested. For example if we want to serve HTML we
 van specify this like so, in our server write the following code:
 
-{% highlight javascript linenos=table %}
+```javascript
 var http = require('http');
 
 function handleRequest(req, res) {
@@ -54,7 +54,7 @@ function handleRequest(req, res) {
 http.createServer(handleRequest).listen(5000, function() {
     console.log('listening on port 5000');
 });
-{% endhighlight %}
+```
 
 When you open this page in your browser and look at it's source you can see that it surrounds the h1 tag we've
 created with propper HTML formatting. But we can't always rely on the tools to do this formatting for us. We
@@ -63,7 +63,7 @@ will have to do this ourselves, so how do we serve a fully fledged HTML file?
 In steps the `fs` module in NodeJS. With this module we can read a file and send it out to the browser. Just 
 create a basic `index.html` file and put the following in there:
 
-{% highlight html linenos=table %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,11 +74,11 @@ create a basic `index.html` file and put the following in there:
     <h1>Hello World!</h1>
 </body>
 </html>
-{% endhighlight %}
+```
 
 To serve this page using just plain old Node you can use the following snippet:
 
-{% highlight javascript linenos=table %}
+```javascript
 var http = require('http'),
     fs = require('fs');
 
@@ -93,7 +93,7 @@ function hanldeRequest(req, res) {
 http.createServer(handleRequest).listen(5000, function() {
     console.log('listening on port 5000');
 });
-{% endhighlight %}
+```
 
 This code show you how to serve a simple static HTML file from our NodeJS server to a client. This does not mean that 
 this is the only way of serving static content. As you can see we have 

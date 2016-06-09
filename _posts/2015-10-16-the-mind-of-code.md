@@ -2,7 +2,7 @@
 layout: post
 title:  "The mind of code"
 date:   2015-10-16
-categories: programming, general
+categories: programming general
 ---
 
 ## The MEAN stack

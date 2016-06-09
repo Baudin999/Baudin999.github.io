@@ -11,7 +11,7 @@ Normally I would start a blog post with a bit of a back-story about the subject,
 should, but often do, need some explanation. This post will be different I will start from a simple implementation
 of a promise and we will end with how ES2015 will implement them.
 
-{% highlight javascript linenos=table %}
+```javascript
 
 // The promise class implementation
 function Promise() {
@@ -34,11 +34,11 @@ Promise.defer = function() {
   return new Promise();
 }
 
-{% endhighlight %}
+```
 
 Now we can use this piece of code like so:
 
-{% highlight javascript linenos=table %}
+```javascript
 
 // how to use the new Promise class...
 function doSomething() {
@@ -53,7 +53,7 @@ doSomething().then(function(message) {
   console.log(message);
 });
 
-{% endhighlight %}
+```
 
 Let's step though this code. Because this blog is for medium to advanced programmers I'm not going to explain
 the basics of JavaScript like lambda's and closures. If you do not have a solid understanding of these concepts 
@@ -73,7 +73,7 @@ I did not implement any error handling or chaining of promises. This is to keep 
 
 Now let's rewrite this using ES2015's class keyword and other goodies:
 
-{% highlight javascript linenos=table %}
+```javascript
 
 class Promise {
   
@@ -96,11 +96,11 @@ class Promise {
   }
 }
 
-{% endhighlight %}
+```
 
 And the usage would look something like:
 
-{% highlight javascript linenos=table %}
+```javascript
 
 // how to use the new Promise class...
 function doSomething() {
@@ -115,11 +115,11 @@ doSomething().then(function(message) {
   console.log(message);
 });
 
-{% endhighlight %}
+```
 
 Now let's look at the Promise library in ES2015:
 
-{% highlight javascript lineos=table %}
+```javascript
 function doSomething() {
   return new Promise((_resolve, _reject) => {
     setTimeout(() => _resolve('I\'ve been resolved!!'), 0);
@@ -127,7 +127,7 @@ function doSomething() {
 }
 
 doSomething().then((_m) => console.log(_m));
-{% endhighlight %}
+```
 
 It feels a bit wrong to pass in the `resolve` and `reject` handlers to the `Promise` constructor. But considering
 how JavaScript's closures work it is actually a very nice way to work around having to create objects inside of

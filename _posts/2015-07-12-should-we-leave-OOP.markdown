@@ -4,6 +4,7 @@ title:  "Should we leave OOP?"
 date:   2015-07-12 08:42:46
 categories: programming
 ---
+
 ## Why can't I sleep?
 
 I've been doing a lot of 'soul searching' these last weeks. I've been facing a difficult problem which I cannot
@@ -12,7 +13,7 @@ ideas and code styles.
 
 For example; the following code describes a decorator in JavaScript:
     
-{% highlight javascript linenos=table %}
+```javascript
 function decorateConsoleLog () {
     var old = console.log;
     
@@ -40,7 +41,7 @@ clearDecoration();
 
 // log something to the console.
 console.log('Cleared');
-{% endhighlight %}
+```
 
 This code is wonderful in it's simplicity. It does what it is supposed to do and that is create a decorator for
 `console.log`. And it also shows a valid pattern in JavaScript which are closures. We tend to think poorly of
@@ -50,7 +51,7 @@ need to program instead of building a scaffold which an Object Oriented applicat
 I will try and get these comments into perspective, imagine an application where we're doing some type of 
 order with orderlines. In C# we would have to scaffold this structure along the lines of:
 
-{% highlight C# linenos=table %}
+```csharp
 public class Order {
   public string Number { get; set; }
   public ICollection<OrderLine> OrderLines { get; set; }
@@ -61,35 +62,35 @@ public class Order {
 public class OrderLine {
   public string Number { get; set; }
 }
-{% endhighlight %}
+```
 
 This would be a typical 'bare' implementation of a structure. And when we want to instantiate these objects we 
 will get something like:
 
-{% highlight C# linenos=table %}
+```csharp
 var order = new Order();
 order.Number = "1234567890";
 order.OrderLines.Add(new OrderLine() {
   Number = "0987654321"
 });
-{% endhighlight linenos=table %}
+```
 
 If we were to adopt a more "javasscripty" style of programming we would have to accept that there "is no 
 spoon". We do not write data classes. We just return objects. So instead of writing the class definition
 we would just create the object:
 
-{% highlight javascript %}
+```javascript
 var order = {
   number: '1234567890',
   orderLines: [
     { number: '0987654321' }
   ]
 };
-{% endhighlight %}
+```
 
 In F# this would probably look something like:
 
-{% highlight fsharp linenos=table %}
+```fsharp
 type OrderLine = {
     Number: string
 }
@@ -103,7 +104,7 @@ let order = {
     Number = "1234567890"; 
     OrderLines = [ { Number = "0987654321" } ] 
 }
-{% endhighlight %}
+```
 
 In F# the object `order` is already immutable. In C# and JavaScript we would still need to do a bit of plumbing
 to get this done. The JavaScript version is the easiest to achieve. `Object.freeze(order)` would be all we needed
@@ -112,7 +113,7 @@ still possible to add and orderLine to the orderLines property of the order obje
 
 In C# we would have to rewrite our entire class to achieve this immutability:
 
-{% highlight C# linenos=table %}
+```csharp
 public class OrderLine {
     private readonly string _Number;
     public string Number {
@@ -148,7 +149,7 @@ public class Order {
         _OrderLines = orderLines;
     }
 }
-{% endhighlight %}
+```
 
 This C# code while verbose is better than the JavaScript version because the Collection of orderlines returned
 from the property will never mutate the original collection. The part which gives me nightmares is the amount 
@@ -156,7 +157,7 @@ of code we need to write to give this class the illusion of immutability.
 
 In JavaScript the code to formally create an immutable object becomes another type of nightmare:
 
-{% highlight javascript linenos=table %}
+```javascript
 // create a self executing function
 var order = (function createOrder() {
 
@@ -185,12 +186,12 @@ var order = (function createOrder() {
 
 order.orderLines.push({ number: '123123123' });
 console.log(order.orderLines.length);
-{% endhighlight %}
+```
 
 But seeing how we already know how to write decorators, we might be able to abstract all of this away. Let's
 look at an implementation of this solution:
 
-{% highlight javascript linenos=table %}
+```javascript
 (function() {
 
   var _old = Object.freeze;
@@ -235,7 +236,7 @@ Object.freeze(order);
 
 order.orderLines.push({ number: '123123123' });
 console.log(order.orderLines.length);
-{% endhighlight %}
+```
 
 This decorator is still readable enough to serve it's purpose and it has changed the default implementation
 of the `Object.freeze()` implementation. Now, to be honest, I do not like changing behavior of existing 
